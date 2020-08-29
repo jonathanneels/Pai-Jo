@@ -2011,7 +2011,7 @@ p4InCheck=true;
 }
 		 clearTimeout(gameInfoTimeout);
 		 var oldInfo= $("#pInfo").html().split("-")[0].trim();
- $("#pInfo").html("Player " + feedbackObjOther[0].teamId +" is in check.");  chatFieldEntry($("#pInfo").html());
+ $("#pInfo").html("Player " + (parseInt(feedbackObjOther[0].teamId) +1).toString() +" is in check.");  chatFieldEntry($("#pInfo").html());
 gameInfoTimeout=setTimeout(function(){ clearTimeout(gameInfoTimeout);$("#pInfo").html(oldInfo); }, 500);
 
 	 }
@@ -2039,7 +2039,7 @@ p4InCheck=true;
 
 		 clearTimeout(gameInfoTimeout);
 		 var oldInfo= $("#pInfo").html().split("-")[0].trim();
- $("#pInfo").html("Player " + feedbackObjMe[0].teamId +" is in check.");  chatFieldEntry($("#pInfo").html());
+ $("#pInfo").html("Player " + (parseInt(feedbackObjMe[0].teamId) +1).toString() +" is in check.");  chatFieldEntry($("#pInfo").html());
 gameInfoTimeout=setTimeout(function(){ clearTimeout(gameInfoTimeout);$("#pInfo").html(oldInfo); }, 500);
 
 	 }
