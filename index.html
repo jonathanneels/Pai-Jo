@@ -677,7 +677,7 @@ console.log("who:" +Who);
 
  if(Who==0){ gameRound+=1;
 	 	 	//var feedbackObjMe= ObjDataList.filter(x => x.teamId ==	 Who && x.ObjType== 1);
-			if( p1AvatarCaptured )//regenerating avatar
+			if( p1AvatarCaptured ==true )//regenerating avatar
 			{
 			if($("#260").find("img").length < 1){
 		 $("#260").html($("#obj_1"));	 
@@ -685,11 +685,11 @@ console.log("who:" +Who);
 	 	 $("#obj_1").width($("#260").width());
 		  collisionDirections("260"); 
 		 p1AvatarCaptured=false;}
-		 else{
+		 else if($("#260").find("img").length >= 1 && p1AvatarCaptured){
 		 		 clearTimeout(gameInfoTimeout);
 		 clearTimeout(aITimeout);
 
- aITimeout=setTimeout(function(){		   $("#pInfo").html("Avatar Player " +(Who+1).toString()+" cannot respawn.<br> There is a pawn on the spawnfield.");  chatFieldEntry($("#pInfo").html()); }, 200);
+ aITimeout=setTimeout(function(){		   $("#pInfo").html("Avatar Player " +(Who+1).toString()+" cannot respawn.<br> There is a pawn on the spawnfield.");  chatFieldEntry($("#pInfo").html()); }, 10);
 
 		 }
 			}
@@ -705,7 +705,7 @@ if((aICount >=1 && isManVSAi )|| isAiVSAi){
 
 }
 else if(Who==1 && playerCount>=2){
- 			if(p2AvatarCaptured) 
+ 			if(p2AvatarCaptured ==true) 
 			{			if($("#100").find("img").length < 1){
 
  			 $("#100").html($("#obj_15"));	 
@@ -713,11 +713,11 @@ else if(Who==1 && playerCount>=2){
 	 	 $("#obj_15").width($("#100").width());
 		 		  collisionDirections("100");
 p2AvatarCaptured=false; }
-		 else{
+		 else if($("#100").find("img").length >= 1 && p2AvatarCaptured){
 		 		 clearTimeout(gameInfoTimeout);
 		 clearTimeout(aITimeout);
 
- aITimeout=setTimeout(function(){		   $("#pInfo").html("Avatar Player " +(Who+1).toString()+" cannot respawn.<br> There is a pawn on the spawnfield."); chatFieldEntry($("#pInfo").html());  }, 200);
+ aITimeout=setTimeout(function(){		   $("#pInfo").html("Avatar Player " +(Who+1).toString()+" cannot respawn.<br> There is a pawn on the spawnfield."); chatFieldEntry($("#pInfo").html());  }, 10);
  
 		 }
 	}
@@ -732,18 +732,18 @@ Who+=1;
  
 }
 else if(Who==2 && playerCount>=3 ){
- 			if(p3AvatarCaptured) 
+ 			if(p3AvatarCaptured ==true) 
 			{if($("#252").find("img").length < 1){
  			 $("#252").html($("#obj_29"));	 
 	 $("#obj_29").height($("#252").height());
 	 	 $("#obj_29").width($("#252").width());
 		 		  collisionDirections("252");
 p3AvatarCaptured=false;} 
-		 else{
+		 else if($("#252").find("img").length >= 1 && p3AvatarCaptured){
 		 		 clearTimeout(gameInfoTimeout);
 		 clearTimeout(aITimeout);
 
- aITimeout=setTimeout(function(){		   $("#pInfo").html("Avatar Player " +(Who+1).toString()+" cannot respawn.<br> There is a pawn on the spawnfield.");  chatFieldEntry($("#pInfo").html()); }, 200);
+ aITimeout=setTimeout(function(){		   $("#pInfo").html("Avatar Player " +(Who+1).toString()+" cannot respawn.<br> There is a pawn on the spawnfield.");  chatFieldEntry($("#pInfo").html()); }, 10);
 }
 
 		 }
@@ -757,18 +757,18 @@ Who+=1;
 }
 }
  else if(Who==3 && playerCount>=4 ){
- 			if(p4AvatarCaptured) 
+ 			if(p4AvatarCaptured ==true) 
 			{if($("#108").find("img").length < 1){
  	 			 $("#108").html($("#obj_43"));	 
 	 $("#obj_43").height($("#108").height());
 	 	 $("#obj_43").width($("#108").width());
 		 		  collisionDirections("108");
 p4AvatarCaptured=false;}
-		 else{
+		 else if($("#108").find("img").length >= 1 && p4AvatarCaptured){
 		 		 clearTimeout(gameInfoTimeout);
 		 clearTimeout(aITimeout);
 
- aITimeout=setTimeout(function(){		   $("#pInfo").html("Avatar Player " +(Who+1).toString()+" cannot respawn.<br> There is a pawn on the spawnfield.");   chatFieldEntry($("#pInfo").html());}, 200);
+ aITimeout=setTimeout(function(){		   $("#pInfo").html("Avatar Player " +(Who+1).toString()+" cannot respawn.<br> There is a pawn on the spawnfield.");   chatFieldEntry($("#pInfo").html());}, 10);
  		 }
 	}
 Who+=1;
@@ -2068,7 +2068,8 @@ else if(feedbackObjOther[0].teamId ==3)
 {
 p4AvatarCaptured=true;
 }
-	 $("#spanLowerP").append($("#"+posother).find("img")[0]);// collisionActions(meId, otherId); return;
+	 $("#spanLowerP").append($("#"+posother).find("img")[0]);// 
+	 collisionActions(meId, otherId); return;
  	 }
 	     if (parseInt(feedbackObjOther[0].ObjType)>  1  && parseInt(feedbackObjMe[0].ObjType) == 1 && parseInt(feedbackObjMe[0].teamId)!= parseInt(feedbackObjOther[0].teamId)  )//ava me
 	{ 
@@ -2134,6 +2135,8 @@ else if(feedbackObjMe[0].teamId ==3)
 p4AvatarCaptured=true;
 }
 	 $("#spanLowerP").append($("#"+posme).find("img")[0]); //not removefromobjdatalist!
+	 	 collisionActions(meId, otherId); return;
+
  	 }
 	
 	 
