@@ -549,19 +549,19 @@ setTimeout(function(){ 	restartGame(); }, 3000);
  });
 
 	  	if(typeof locId != "undefined"  ){
-		if(teamturnId ==0 && p1InCheck && p1OutTheGame) // p1OutTHeGame added with function isLotusIngame()
+		if(teamturnId ==0 && p1InCheck ) // p1OutTHeGame added with function isLotusIngame()
 {
 			 p1InCheck=false;
 }
 
-else if(teamturnId ==1 && p2InCheck && p2OutTheGame)
+else if(teamturnId ==1 && p2InCheck )
 {p2InCheck=false;
  }
-else if(teamturnId ==2 && p3InCheck && p3OutTheGame)
+else if(teamturnId ==2 && p3InCheck )
 {p3InCheck=false;
 
  }
-else if(teamturnId ==3 && p4InCheck && p4OutTheGame)
+else if(teamturnId ==3 && p4InCheck )
 {
   
 	p4InCheck=false;
@@ -600,55 +600,7 @@ else if(teamturnId ==3 && p4InCheck)
   }}
 	 }
 	 }
-	 
-	 
-function isLotusIngame()// temp. method. When found error Lotus doesn't get lost with the AI. NOTE: FIXED; disabled place avatar when other pawn is on that field;
-{
-
-p1OutTheGame= true;
-p2OutTheGame= true;
-p3OutTheGame= true;
-p4OutTheGame= true;
- 
-   
-			$("#tblPlayField td img").each(function() {
- 				     if($(this)[0].id=="obj_0")
-								{  	 	
-p1OutTheGame= false;
-
-
-								  }
- 								else if($(this)[0].id=="obj_14")
-								{  	 	
-
-p2OutTheGame= false;
-
-								  }
-								  else if($(this)[0].id=="obj_28")
-								{  	 	
-p3OutTheGame= false;
-
-								  }
-								    else if($(this)[0].id=="obj_42")
-								{  	 	
-p4OutTheGame= false;
-
-
-								  }
-							
-								});
-								
-								
-if(!p1InCheck && p1OutTheGame)// gets handled in isCheckState
-{p1InCheck=true;}
-if(!p2InCheck && p2OutTheGame)
-{p2InCheck=true;}
-if(!p3InCheck && p3OutTheGame)
-{p3InCheck=true;}
-if(!p4InCheck && p4OutTheGame)
-{p4InCheck=true;}
- 
-}
+	  
 	 
 var isNextPlayerAllowed=true;
 function nextPlayer()
@@ -673,8 +625,7 @@ console.log("who:" +Who);
 
  isCheckState( Who );
  isGameOverByDominance();
-//isLotusIngame();
-
+ 
  if(Who==0){ gameRound+=1;
 	 	 	//var feedbackObjMe= ObjDataList.filter(x => x.teamId ==	 Who && x.ObjType== 1);
 			if( p1AvatarCaptured ==true )//regenerating avatar
