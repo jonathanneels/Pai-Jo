@@ -15,3 +15,5 @@ Wat needs to be improved/added;
 
 Feel free to make a fork. Spread the word and share this game! Play versus the ai or on a tablet with other board game enthusiasts.
 
+You can play the title here: http://fumetsujo.pythonanywhere.com/static/OTHER/paisho.html
+
