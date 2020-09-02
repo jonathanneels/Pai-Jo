@@ -243,7 +243,7 @@ abbr[title] {
     </div>
     <div class="modal-body">
 	<input id="radVSAI" type="radio" name="radVersus" onclick="$('#spanAIAdd').show();" checked /><label for="radVSAI" >VS AI</label><br>
-<input id="radVSPlayer" type="radio" name="radVersus" onclick="$('#spanAIAdd').hide();"/><label for="radVSPlayer">Pass & Play (2 players)</label><br>
+<input id="radVSPlayer" type="radio" name="radVersus" onclick="$('#spanAIAdd').hide();"/><label for="radVSPlayer">Pass & Play (local players)</label><br>
 	<input id="radAIVSAI" type="radio" name="radVersus" onclick="$('#spanAIAdd').hide();"/><label for="radAIVSAI">Bot Match</label>	<br> 
 
 	<br> 
@@ -252,6 +252,12 @@ abbr[title] {
 <abbr title="No need to get first to the center, defeat the other Lotusses"> Win ONLY by Dominance?</abbr>
   <span class="checkmark"></span>
 </label>
+<label class="container"><br>
+  <input type="checkbox" id="chSkudPashoBoardStyle" >
+<abbr title="On the SkudPaisho board, you must place your lotus one field behind the centre to win."> SkudPaisho Board?</abbr>
+  <span class="checkmark"></span>
+</label>
+
 	<br><br>
 	
  Seats &nbsp; <input type="number" id="txtPlayerCount" name="txtPlayerCount" min=2 max=4  value=4><br> 
@@ -310,6 +316,9 @@ After a piece is moved, it can be moved again to jump any piece owned by the pla
 When the White Lotus in under attack rather than instantly be removed from the board, it has one turn to be moved to a save location, if that proves impossible the attacking player has won.</p>
 <p>&nbsp;</p>
 <p>You win either by killing the opponents white lotus (DOMINANCE), or getting your safely to the center of the board for one full turn cycle.</p>  </div>
+<p>&nbsp;</p>
+<p>Note:<br>
+On the SkudPaisho board, you must place your lotus one field behind the centre to win.</p>  </div>
 
 <div class="modal-footer">
 <footer style="text-align:center">
@@ -388,6 +397,7 @@ var p4AITurn =false;
  var gameRound = 0;
  
  var isWinOnlyByDominance=false;
+ var isSkudBoard= false;
  
  var lastChat="";
 var straightMovementCounter=0; // ai no more moves handler
@@ -1601,9 +1611,7 @@ return false;}
       $(this).css("background-color","#FAF2C3");//light beach sand
             });
 			
-				/// center point game
-			 $("#180").css("background-color","purple");
-		   
+			
 		   
 					/// fine red arrow 
 		   		   $("#160").css("background-color","firebrick");
@@ -1659,6 +1667,18 @@ return false;}
  				   	$("#143").css("background-color","white");
 				   	$("#163").css("background-color","white");
  
+ 
+ 	/// center point game
+				if(isSkudBoard){
+							 $("#200").css("background-color","purple");
+			 $("#198").css("background-color","purple");
+			 $("#162").css("background-color","purple");
+			 $("#160").css("background-color","purple");
+
+				}else{
+			 $("#180").css("background-color","purple");
+			 }
+		   
 				   
             setBorderColor();
 
@@ -2299,7 +2319,7 @@ if(!isGameStarted || (typeof feedbackObjMe != "undefined" && parseInt(feedbackOb
 	jumpedTilesInTurn=[];
 	}
 	
-	if(!isWinOnlyByDominance &&  me == 180 && typeof feedbackObjMe[0].ObjType != "undefined" &&  feedbackObjMe[0].ObjType ==0) 
+	if(!isWinOnlyByDominance && typeof feedbackObjMe[0] != "undefined" && typeof feedbackObjMe[0].ObjType != "undefined" &&  feedbackObjMe[0].ObjType ==0 &&  ( (me == 180  && !isSkudBoard) ||  ((Who == 0 && me == 160 && typeof feedbackObjMe[0].ObjType != "undefined" &&  feedbackObjMe[0].ObjType ==0) || (Who == 1 && me == 200  ) || (Who == 2 && me == 162 ) || (Who == 3 && me == 198 ))) ) 
 	{
 	var winner= "Player 1";
 	if(Who ==0)
@@ -2437,6 +2457,7 @@ btnStart.onclick = function() {
 
 playerCount = $("#txtPlayerCount").val();
 isWinOnlyByDominance=$("#chDominance").prop("checked");
+isSkudBoard = $("#chSkudPashoBoardStyle").prop("checked");
 
     if($('#radVSAI').is(':checked')) {   
 
