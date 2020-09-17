@@ -254,7 +254,7 @@ abbr[title] {
 </label>
 <label class="container"><br>
   <input type="checkbox" id="chMayhem" >
-<abbr title="In this mode all players have 13 avatars and 1 lotus. The normal/edited game rules are applied."> Avatar Mayhem?</abbr>
+<abbr title="In this mode all players have 13 avatars (dragons) and 1 lotus. The normal/edited game rules are applied."> Dragon Mayhem?</abbr>
   <span class="checkmark"></span>
 </label><br>
 <label class="container"><br>
@@ -388,7 +388,7 @@ var p4AITurn =false;
 
  var previousAIActionCompleted= true;
  
- var isAvatarMayhem= false;
+ var isDragonMayhem= false;
  
  var jumpedTilesInTurn=[];// prevents returning to previous steps
  
@@ -649,7 +649,7 @@ console.log("who:" +Who);
 			{
 						if($("#260").find("img").length < 1){
 			var avatarReturn= $("#obj_1");
-			if(isAvatarMayhem){
+			if(isDragonMayhem){
 			for (i = 0; i < $("#spanLowerP").find("img") .length; i++) {
 			var handleObj = ObjDataList.filter( x => x.id == $("#spanLowerP").find("img") [i].id)[0];
   if(typeof handleObj != "undefined" &&  handleObj.ObjType == 1 && handleObj.teamId == Who) 
@@ -664,7 +664,7 @@ console.log("who:" +Who);
 	 	avatarReturn.width($("#260").width());
 		  collisionDirections("260"); 
 		 p1AvatarCaptured=false;
-		 if(isAvatarMayhem){
+		 if(isDragonMayhem){
 			for (i = 0; i < $("#spanLowerP").find("img") .length; i++) {
 			var handleObj = ObjDataList.filter( x => x.id == $("#spanLowerP").find("img") [i].id)[0];
   if(typeof handleObj != "undefined" &&  handleObj.ObjType == 1 && handleObj.teamId == Who) 
@@ -679,8 +679,11 @@ console.log("who:" +Who);
 		 		 clearTimeout(gameInfoTimeout);
 		 clearTimeout(aITimeout);
 
- aITimeout=setTimeout(function(){		 $("#pInfo").html("Avatar previous player cannot respawn.<br> There is a pawn on the spawnfield.");  
- chatFieldEntry($("#pInfo").html()); }, 10);
+  //aITimeout=setTimeout(function(){		
+ $("#pInfo").html("Avatar last player can't respawn, <br> remove the pawn from the spawnfield");  
+ chatFieldEntry($("#pInfo").html());
+// }, 10); = turn info more important than the spawnInfo.
+
 
 		 }
 			}
@@ -700,7 +703,7 @@ else if(Who==1 && playerCount>=2){
 			{			
 			if($("#100").find("img").length < 1){
 var avatarReturn= $("#obj_15");
-	if(isAvatarMayhem){
+	if(isDragonMayhem){
 			for (i = 0; i < $("#spanLowerP").find("img") .length; i++) {
 			var handleObj = ObjDataList.filter( x => x.id == $("#spanLowerP").find("img") [i].id)[0];
   if(typeof handleObj != "undefined" &&  handleObj.ObjType == 1 && handleObj.teamId == Who) 
@@ -715,7 +718,7 @@ var avatarReturn= $("#obj_15");
 	 	avatarReturn.width($("#100").width());
 		 		  collisionDirections("100");
 p2AvatarCaptured=false; 
-if(isAvatarMayhem){
+if(isDragonMayhem){
 			for (i = 0; i < $("#spanLowerP").find("img") .length; i++) {
 			var handleObj = ObjDataList.filter( x => x.id == $("#spanLowerP").find("img") [i].id)[0];
   if(typeof handleObj != "undefined" &&  handleObj.ObjType == 1 && handleObj.teamId == Who) 
@@ -730,8 +733,10 @@ if(isAvatarMayhem){
 		 		 clearTimeout(gameInfoTimeout);
 		 clearTimeout(aITimeout);
 
- aITimeout=setTimeout(function(){	 $("#pInfo").html("Avatar previous player cannot respawn.<br> There is a pawn on the spawnfield.");  
- chatFieldEntry($("#pInfo").html());  }, 10);
+  //aITimeout=setTimeout(function(){		
+ $("#pInfo").html("Avatar last player can't respawn, <br> remove the pawn from the spawnfield");  
+ chatFieldEntry($("#pInfo").html());
+// }, 10); = turn info more important than the spawnInfo.
  
 		 }
 	}
@@ -749,7 +754,7 @@ else if(Who==2 && playerCount>=3 ){
  			if(p3AvatarCaptured ==true) 
 			{if($("#252").find("img").length < 1){
 			var avatarReturn= $("#obj_29");
-		if(isAvatarMayhem){
+		if(isDragonMayhem){
 			for (i = 0; i < $("#spanLowerP").find("img") .length; i++) {
 			var handleObj = ObjDataList.filter( x => x.id == $("#spanLowerP").find("img") [i].id)[0];
   if(typeof handleObj != "undefined" &&  handleObj.ObjType == 1 && handleObj.teamId == Who) 
@@ -764,7 +769,7 @@ else if(Who==2 && playerCount>=3 ){
 	 	avatarReturn.width($("#252").width());
 		 		  collisionDirections("252");
 p3AvatarCaptured=false;
-if(isAvatarMayhem){
+if(isDragonMayhem){
 			for (i = 0; i < $("#spanLowerP").find("img") .length; i++) {
 			var handleObj = ObjDataList.filter( x => x.id == $("#spanLowerP").find("img") [i].id)[0];
   if(typeof handleObj != "undefined" &&  handleObj.ObjType == 1 && handleObj.teamId == Who) 
@@ -778,11 +783,15 @@ if(isAvatarMayhem){
 		 else if($("#252").find("img").length >= 1 && p3AvatarCaptured){
 		 		 clearTimeout(gameInfoTimeout);
 		 clearTimeout(aITimeout);
-
- aITimeout=setTimeout(function(){		   
 // $("#pInfo").html("Avatar Player " +(Who+1).toString()+" cannot respawn.<br> There is a pawn on the spawnfield.");  
- $("#pInfo").html("Avatar previous player cannot respawn.<br> There is a pawn on the spawnfield.");  
- chatFieldEntry($("#pInfo").html()); }, 10);
+
+  //aITimeout=setTimeout(function(){		
+ $("#pInfo").html("Avatar last player can't respawn, <br> remove the pawn from the spawnfield");  
+ chatFieldEntry($("#pInfo").html());
+// }, 10); = turn info more important than the spawnInfo.
+
+ 
+ 
 }
 
 		 }
@@ -799,7 +808,7 @@ Who+=1;
  			if(p4AvatarCaptured ==true) 
 			{if($("#108").find("img").length < 1){
 			var avatarReturn= $("#obj_43");
-			if(isAvatarMayhem){
+			if(isDragonMayhem){
 			for (i = 0; i < $("#spanLowerP").find("img") .length; i++) {
 			var handleObj = ObjDataList.filter( x => x.id == $("#spanLowerP").find("img") [i].id)[0];
   if(typeof handleObj != "undefined" &&  handleObj.ObjType == 1 && handleObj.teamId == Who) 
@@ -814,7 +823,7 @@ Who+=1;
 	 	avatarReturn.width($("#108").width());
 		 		  collisionDirections("108");
 p4AvatarCaptured=false;
-if(isAvatarMayhem){
+if(isDragonMayhem){
 			for (i = 0; i < $("#spanLowerP").find("img") .length; i++) {
 			var handleObj = ObjDataList.filter( x => x.id == $("#spanLowerP").find("img") [i].id)[0];
   if(typeof handleObj != "undefined" &&  handleObj.ObjType == 1 && handleObj.teamId == Who) 
@@ -829,8 +838,12 @@ if(isAvatarMayhem){
 		 		 clearTimeout(gameInfoTimeout);
 		 clearTimeout(aITimeout);
 
- aITimeout=setTimeout(function(){		 $("#pInfo").html("Avatar previous player cannot respawn.<br> There is a pawn on the spawnfield.");  
- chatFieldEntry($("#pInfo").html());}, 10);
+ //aITimeout=setTimeout(function(){		
+ $("#pInfo").html("Avatar last player can't respawn, <br> remove the pawn from the spawnfield");  
+ chatFieldEntry($("#pInfo").html());
+// }, 10); = turn info more important than the spawnInfo.
+
+
  		 }
 	}
 Who+=1;
@@ -867,7 +880,8 @@ else if(  p2OutTheGame && Who==1 ){     isHindered= true;    }
 
 if(!isHindered){
 
-  $("#pInfo").html("Player " +(Who+1).toString()+"'s turn."); chatFieldEntry($("#pInfo").html());
+		 clearTimeout(gameInfoTimeout);//added on 17/09/'20, after chess wrong info.
+   $("#pInfo").html("Player " +(Who+1).toString()+"'s turn."); chatFieldEntry($("#pInfo").html());
 
   if(isAiVSAi || (isManVSAi && (p1AITurn || p2AITurn || p3AITurn || p4AITurn   ))){	aITimeout  = setTimeout(function(){   aIAction()}, 100);}//ideal 1200ms => higher, lower crash chance, more time to adjust to other timeouts (and collisionhandlers).
 
@@ -1036,7 +1050,7 @@ continue;
 
 					selectedObject(chosenObjId); 
 					
-						if(!isAvatarMayhem && feedbList[i].ObjType ==1 && ((Who ==0 && p1AvatarCaptured )|| (Who ==1 && p2AvatarCaptured ) || (Who ==2 && p3AvatarCaptured ) || (Who ==3 && p4AvatarCaptured )))
+						if(!isDragonMayhem && feedbList[i].ObjType ==1 && ((Who ==0 && p1AvatarCaptured )|| (Who ==1 && p2AvatarCaptured ) || (Who ==2 && p3AvatarCaptured ) || (Who ==3 && p4AvatarCaptured )))
 						{
 						console.log("Avatar captured");
  																clearTimeout(aITimeout);//movement is blocked, so new 'action roll'.
@@ -1475,12 +1489,14 @@ gameRound=0;
 
 	//}, 1500); 
 
-if(isAvatarMayhem)
+if(isDragonMayhem)
 {
 
 for (i = 0; i < ObjDataList.length; i++) {
  if( ObjDataList[i].ObjType != 0)
  {
+ ObjDataList[i].ObjName="dragon";//avatar..
+ 
  ObjDataList[i].ObjType=1;
  if( ObjDataList[i].teamId == 0)
  {
@@ -2600,7 +2616,7 @@ btnStart.onclick = function() {
 playerCount = $("#txtPlayerCount").val();
 isWinOnlyByDominance=$("#chDominance").prop("checked");
 isSkudBoard = $("#chSkudPashoBoardStyle").prop("checked");
-isAvatarMayhem = $("#chMayhem").prop("checked");
+isDragonMayhem = $("#chMayhem").prop("checked");
 
     if($('#radVSAI').is(':checked')) {   
 
