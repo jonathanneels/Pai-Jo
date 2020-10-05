@@ -5,6 +5,9 @@
 	  <link rel="shortcut icon" type="image/x-icon" href="/static/images/icon/icon_game.ico">
 <title>Modern Pai Sho - (Version Pai Jo)</title>
 <style>
+body{background-color:white;}
+#sFScreen{background-color:white;}
+
 h3{text-align:center;}
 #pInfo{float:right; clear:both; padding-right:45px;}
  #spanSettings input, button  {margin-left:20%;}
@@ -27,7 +30,7 @@ h3{text-align:center;}
   transform: scale(1.5);
  }*/
 
-#tableDiv {
+#tableDiv { background-color:white;
         transform:rotate(45deg) scale(0.7);
 float: right;
   clear: both;		margin-top: -1.5%;margin-left:17.5%; position:absolute;
@@ -193,14 +196,15 @@ abbr[title] {
 </style>
 </head>
 <body class="noselect"   oncontextmenu="return false;"> 
+   <button type="button" class="" id="btnFullScreen" style="float:right;margin-right:2%;" onclick="ToggleFullscreen();">[*]</button>
 
-<h3 >Modern Pai Sho - (Version Pai Jo)</h3>
+<h3 >Modern Pai Sho - (Version Pai Jo)</h3> <span id="sFScreen">
      <div id="tableDiv" style="  float:center;">
         Table will generate here.
     </div>
 
 <span id="spanUpperP"></span>
- 
+
 
 <span id="spanSettings" style="float:left;"><br> 
 <span hidden>
@@ -209,7 +213,7 @@ abbr[title] {
 <input type="file" id="file-input" accept="txt/*"/><br>
 <input  type="button"id="read-button" value="Read File" /></span>
 <br><br>
-
+<br>
 <input type="button" id="btnModeSelect" onclick="javascript:window.location.href=window.location.href"value="Mode select"/><br>
 <br>
 
@@ -236,7 +240,7 @@ abbr[title] {
 <p id="pInfo">Loading...</p> 
 <div id="divGameLog"   style=" ">   </div>
 <span id="spanLowerP"></span>
-
+</span>
 
 
 <!-- The Modal -->
@@ -2786,5 +2790,24 @@ var modalInfo = document.getElementById("divInfoModal");
  //setInterval(function(){if(lastChat != $("#pInfo").html()){ }}, 100);
 // chat and other multip. stuff.
 </script>
+<script>
+function ToggleFullscreen(){
+/* Get the element you want displayed in fullscreen mode (a video in this example): https://www.w3schools.com/howto/howto_js_fullscreen.asp*/
+var elem = document.getElementById("sFScreen");
+
+/* When the openFullscreen() function is executed, open the video in fullscreen.
+Note that we must include prefixes for different browsers, as they don't support the requestFullscreen method yet */
+   if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.mozRequestFullScreen) { /* Firefox */
+    elem.mozRequestFullScreen();
+  } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { /* IE/Edge */
+    elem.msRequestFullscreen();
+   
+}}
+</script>
+
 </body>
 </html>
