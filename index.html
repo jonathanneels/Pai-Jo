@@ -198,7 +198,7 @@ abbr[title] {
 <body class="noselect"   oncontextmenu="return false;"> 
    <button type="button" class="" id="btnFullScreen" style="float:right;margin-right:2%;" onclick="ToggleFullscreen();">[*]</button>
 
-<h3 >Modern Pai Sho - (Version Pai Jo)</h3> <span id="sFScreen">
+<h3 style="margin-left:20%;" >Modern Pai Sho - (Version Pai Jo)</h3> <span id="sFScreen">
      <div id="tableDiv" style="  float:center;">
         Table will generate here.
     </div>
@@ -2782,6 +2782,16 @@ var modalInfo = document.getElementById("divInfoModal");
 
 
 
+
+$( window ).resize(function() {
+ 	 
+	 for (var i = 0; i < ObjDataList.length; i++) {
+ 
+	 $("#"+ObjDataList[i].id).height(	 $("#0").height());
+	 	 $("#"+ObjDataList[i].id).width($("#0").width());
+}
+
+});
 
 
 </script>
